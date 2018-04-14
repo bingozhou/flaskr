@@ -71,7 +71,9 @@ def add_entry():
 def login():
     error = None
     if request.method == 'POST':
-        if request.form['username'] != app.config['USERNAME']:
+        if request.form['username'] == "" or request.form['password'] == "":
+            error = 'username or password can not be empty!'
+        elif request.form['username'] != app.config['USERNAME']:
             error = 'Invalid username'
         elif request.form['password'] != app.config['PASSWORD']:
             error = 'Invalid password'
